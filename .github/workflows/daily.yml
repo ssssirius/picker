@@ -37,7 +37,7 @@ jobs:
       - name: Issue
         run: gh issue create --title "[每日信息流] `date +'%Y-%m-%d'`" -F today.md --label "daily"
         env:
-          GITHUB_TOKEN: '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'
+          GITHUB_TOKEN: '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'
 
       - name: Commit
         run: |
@@ -50,4 +50,4 @@ jobs:
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          github_token: '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'
+          github_token: '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'
