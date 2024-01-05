@@ -16,7 +16,7 @@ jobs:
         uses: actions-cool/issues-helper@v3
         with:
           actions: 'update-issue'
-          token: ${{ secrets.MY_GITHUB_TOKEN }}
+          token: ${{ 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 }}
           issue-number: ${{ github.event.issue.number }}
           labels: pick
           title: "[${{ steps.date.outputs.date }}] ${{ github.event.issue.title }}"
@@ -35,7 +35,7 @@ jobs:
       - name: Update Body
         run: python3 yarb.py --push-issue ${{ github.event.issue.number }}
         env:
-          GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ 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 }}
           DINGTALK_KEY: ${{ secrets.DINGTALK_KEY }}
           DINGTALK_SECRET: ${{ secrets.DINGTALK_SECRET }}
           PICKER_DINGTALK_KEY: ${{ secrets.PICKER_DINGTALK_KEY }}
