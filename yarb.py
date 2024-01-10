@@ -34,11 +34,30 @@ def update_today(data: dict= {}):
 
     archive_path.parent.mkdir(parents=True, exist_ok=True)
     with open(today_path, 'w+', encoding="utf-8") as f1, open(archive_path, 'w+', encoding="utf-8") as f2:
+        
+        # content = f'# 每日安全资讯（{today}）\n\n'
+        # for feed, articles in data.items():
+        #     content += f'- {feed}\n'
+        #     for title, url in articles.items():
+        #         content += f'  - [ ] [{title}]({url})\n'
+
+        MAX_CONTENT_LENGTH = 65536
         content = f'# 每日安全资讯（{today}）\n\n'
+        current_length = len(content)
         for feed, articles in data.items():
+            if current_length >= MAX_CONTENT_LENGTH:
+                # 如果已经接近限制，退出循环
+                break
             content += f'- {feed}\n'
+            current_length += len(f'- {feed}\n')
             for title, url in articles.items():
-                content += f'  - [ ] [{title}]({url})\n'
+                if current_length >= MAX_CONTENT_LENGTH:
+                    # 如果已经接近限制，退出循环
+                    break
+                # 使用摘要或限制字符数以减小内容长度
+                short_title = title[:50]  # 限制标题长度为50个字符
+                content += f'  - [ ] [{short_title}]({url})\n'
+                current_length += len(f'  - [ ] [{short_title}]({url})\n')
         f1.write(content)
         f2.write(content)
 
