@@ -41,7 +41,7 @@ def update_today(data: dict= {}):
         #     for title, url in articles.items():
         #         content += f'  - [ ] [{title}]({url})\n'
 
-        MAX_CONTENT_LENGTH = 65536
+        MAX_CONTENT_LENGTH = 65400
         content = f'# 每日安全资讯（{today}）\n\n'
         current_length = len(content)
         for feed, articles in data.items():
